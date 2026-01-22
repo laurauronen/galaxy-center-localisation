@@ -1,0 +1,12 @@
+Universe = vanilla
+Executable = /home/lauraelina.uronen/.conda/envs/mm-lensing/bin/python
+Arguments = "/home/lauraelina.uronen/GClocalization/galaxy_centre_best.py"
+
+Log = main_best.log
+Output = main_best.out
+Error = main_best.err
+accounting_group = ligo.dev.o4.cbc.lensing.multi
+request_memory = 8GB
+request_disk = 8GB
+request_cpus = 8
+Queue 1
