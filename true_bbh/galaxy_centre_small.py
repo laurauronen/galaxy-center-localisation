@@ -42,13 +42,13 @@ if not os.path.exists(outdir):
 # lens characteristics
 center_x, center_y = 0, 0
 # source (EM) characteristics
-source_x, source_y = -0.02, 0.01
+source_x, source_y = 0.01,0.06
 
 z_source = 2.0
 z_lens = 1.5
 lens_model_list = ['EPL', 'SHEAR']
 kwargs_epl = {'theta_E': 0.5, 'center_x': center_x, 'center_y': center_y, 'e1': 0., 'e2': 0.1, 'gamma': 2.0}
-kwargs_shear = {'gamma1': -0.05, 'gamma2': 0.1}
+kwargs_shear = {'gamma1': 0.1, 'gamma2': 0.}
 kwargs_lens = [kwargs_epl, kwargs_shear]
 lensModel = LensModel(lens_model_list=lens_model_list, z_source=z_source, z_lens=z_lens)
 
@@ -62,7 +62,7 @@ kwargs_lens_light_mag = [{'magnitude': 22,
                           'center_y': center_y}]
 # source light
 kwargs_source_mag = [{'magnitude': 25, 
-                      'R_sersic': 0.01, 
+                      'R_sersic': 0.02, 
                       'n_sersic': 1, 
                       'e1': -0.1, 
                       'e2': 0., 
@@ -119,8 +119,6 @@ imageLens = imageModel.image(kwargs_lens=kwargs_lens,
 f, ax = plt.subplots(1, 2, figsize=(10, 10), sharex=False, sharey=False)
 
 lens_plot.lens_model_plot(ax[0], lensModel=lensModel, kwargs_lens=kwargs_lens, sourcePos_x=source_x, sourcePos_y=source_y, point_source=True, with_caustics=True, fast_caustic=True)
-ax[0].set_xlim(-0.5, 0.5)
-ax[0].set_ylim(-0.5, 0.5)
 
 ax[1].imshow(np.log10(imageLens), origin='lower', cmap='magma', vmax=10, vmin=-10)
 plt.savefig(outdir+'/lens.png')

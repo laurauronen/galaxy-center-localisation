@@ -1,7 +1,12 @@
-Case 	 r_10 (arcsec) 	 r_10 (pc) 	 p-value (%) 	 Median ratio
-Worst 	 0.0121 	 103.64 	 1.9400 	 0.2261
-Average 	 0.0113 	 104.90 	 0.5800 	 0.1510
-Best 	 0.0312 	 93.32 	 0.0600 	 0.1545
-Uncertainty 5 	 0.0121 	 104.96 	 0.5500 	 0.1578
-Uncertainty 10 	 0.0392 	 339.97 	 7.5400 	 0.5104
-Gaussian prior 	 0.0022 	 18.90 	 0.1500 	 0.0350
+Case 	 r_10 (arcsec) 	 r_10 (pc) 	 p-value (%) 
+Worst 	 0.01208 	 103.64 	 1.9400 
+Average 	 0.01125 	 97.68 	 0.5800 
+Best 	 0.03119 	 240.93 	 0.0600 
+Gaussian Worst 	 0.00260 	 22.27 	 0.0600 
+Gaussian Average 	 0.00218 	 18.9048881202006 	 0.1500 
+Gaussian Best 	 0.01048 	 80.93 	 0.7200 
+Uncertainty 5 	 0.01209 	 104.96 	 0.5500 
+Uncertainty 10 	 0.03916 	 339.97 	 7.5400 
+New bkg, Uni 	 0.01129 	 98.05 	 0.5600 
+New bkg, Norm 	 0.00283 	 24.61 	 0.1700 
+Weighted 	 0.01670 	 145.02 	 0.3600 
