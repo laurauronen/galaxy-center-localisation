@@ -9,7 +9,7 @@ The project is run over several regimes
 - Uniform localisation prior
 - Recast $r_{10}$ measurement (relative, not absolute) + Gaussian prior 
 - Increased modelling uncertainties (5%, 10%)
-- Two alternative backgrounds (Gaussian and Uniform in diamond caustic)
+- One alternative backgrounds under two competing priors (uniform in caustic, with uniform and Gaussian localisation priors)
 - Weighted mean statistic
 
 The detailed instructions to run the script for the basic lens simulation
