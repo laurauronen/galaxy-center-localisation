@@ -1,7 +1,7 @@
 import os
 
 from lensgw import lens_gw
-from log_funcs_best import log_probability
+from log_funcs_small import log_probability
 from random_position_generator import random_position_generator as random_position
 import json
 import pickle 
@@ -31,7 +31,7 @@ gauss = GaussianEllipse()
 
 plt.rcParams.update({'font.family': 'serif'})
 
-outdir = 'best_system/Outdir_lens_reconstruction'
+outdir = 'small_system/Outdir_lens_reconstruction'
 # create the output directory if it does not exist
 if not os.path.exists(outdir):
     os.makedirs(outdir)
@@ -42,12 +42,12 @@ if not os.path.exists(outdir):
 # lens characteristics
 center_x, center_y = 0, 0
 # source (EM) characteristics
-source_x, source_y = 0.12, -0.058
+source_x, source_y = 0.01,0.06
 
-z_source = 0.8
-z_lens = 0.5
+z_source = 2.0
+z_lens = 1.5
 lens_model_list = ['EPL', 'SHEAR']
-kwargs_epl = {'theta_E': 1.8, 'center_x': center_x, 'center_y': center_y, 'e1': 0, 'e2': 0.1, 'gamma': 2.0}
+kwargs_epl = {'theta_E': 0.5, 'center_x': center_x, 'center_y': center_y, 'e1': 0., 'e2': 0.1, 'gamma': 2.0}
 kwargs_shear = {'gamma1': 0.1, 'gamma2': 0.}
 kwargs_lens = [kwargs_epl, kwargs_shear]
 lensModel = LensModel(lens_model_list=lens_model_list, z_source=z_source, z_lens=z_lens)
@@ -65,7 +65,7 @@ kwargs_source_mag = [{'magnitude': 25,
                       'R_sersic': 0.02, 
                       'n_sersic': 1, 
                       'e1': -0.1, 
-                      'e2': -0.2, 
+                      'e2': 0., 
                       'center_x': source_x, 
                       'center_y': source_y}]
 
@@ -88,7 +88,7 @@ kwargs_model = {'lens_model_list': ['EPL', 'SHEAR'],
 #####################
 # GENERATE THE DATA #
 #####################
-numPix = 90
+numPix = 40
 deltaPix = 0.067 
 
 shift = numPix * deltaPix / 2
@@ -115,13 +115,6 @@ imageLens = imageModel.image(kwargs_lens=kwargs_lens,
                               kwargs_source=kwargs_source_light,
                                 kwargs_lens_light=kwargs_lens_light,
                                 kwargs_ps=None)
-
-f, ax = plt.subplots(1, 2, figsize=(10, 10), sharex=False, sharey=False)
-
-lens_plot.lens_model_plot(ax[0], lensModel=lensModel, kwargs_lens=kwargs_lens, sourcePos_x=source_x, sourcePos_y=source_y, point_source=True, with_caustics=True, fast_caustic=True)
-
-ax[1].imshow(np.log10(imageLens), origin='lower', cmap='magma', vmax=10, vmin=-10)
-plt.savefig(outdir+'/lens.png')
 
 #####################
 # OBSERVE THE DATA  #
@@ -167,17 +160,17 @@ kwargs_upper_lens = []
 
 
 fixed_lens.append({})  # for this example, we fix the power-law index of the lens model to be isothermal
-kwargs_lens_init.append({'theta_E': 1.8, 'e1': 0., 'e2': 0.,
+kwargs_lens_init.append({'theta_E': 0.5, 'e1': 0., 'e2': 0.,
                          'center_x': 0., 'center_y': 0., 
                          'gamma': 2.0})
 kwargs_lens_sigma.append({'theta_E': .2, 'e1': 0.1, 'e2': 0.1,
-                         'center_x': 0.01, 'center_y': 0.01, 
+                         'center_x': 0.1, 'center_y': 0.1, 
                          'gamma': 0.5})
-kwargs_lower_lens.append({'theta_E': 1.6, 'e1': -0.2, 'e2': -0.2, 
-                          'center_x': -0.05, 'center_y': -0.05, 
+kwargs_lower_lens.append({'theta_E': 0.3, 'e1': -0.2, 'e2': -0.2, 
+                          'center_x': -0.1, 'center_y': -0.1, 
                           'gamma': 1.8})
-kwargs_upper_lens.append({'theta_E': 2.0, 'e1': 0.2, 'e2': 0.2, 
-                          'center_x': 0.05, 'center_y': 0.05, 
+kwargs_upper_lens.append({'theta_E': 0.7, 'e1': 0.2, 'e2': 0.2, 
+                          'center_x': 0.1, 'center_y': 0.1, 
                           'gamma': 2.2})
 
 fixed_lens.append({'ra_0': 0, 'dec_0': 0})
@@ -227,15 +220,15 @@ kwargs_lens_light_init.append({'R_sersic': 0.1, 'n_sersic': 4,
                                'amp': 200})
 kwargs_lens_light_sigma.append({'n_sersic': 1, 'R_sersic': 0.05, 
                                 'e1': 0.5, 'e2': 0.5, 
-                                'center_x': 0.01, 'center_y': 0.01, 
+                                'center_x': 0.1, 'center_y': 0.1, 
                                 'amp': 100})
 kwargs_lower_lens_light.append({'e1': -0.2, 'e2': -0.2, 
                                 'R_sersic': 0.05, 'n_sersic': .5, 
-                                'center_x': -0.05, 'center_y': -0.05, 
+                                'center_x': -0.1, 'center_y': -0.1, 
                                 'amp': 0.1})
 kwargs_upper_lens_light.append({'e1': 0.2, 'e2': 0.2, 
                                 'R_sersic': 0.2, 'n_sersic': 5., 
-                                'center_x': 0.05, 'center_y': 0.05, 
+                                'center_x': 0.1, 'center_y': 0.1, 
                                 'amp': 500})
 
 lens_light_params = [kwargs_lens_light_init, kwargs_lens_light_sigma, 
@@ -262,7 +255,7 @@ fitting_seq = FittingSequence(kwargs_data_joint, kwargs_model,
 
 fitting_kwargs_list = [['PSO', {'sigma_scale': 1., 'n_particles': 10,
                                 'n_iterations': 5000}],
-                       ['MCMC', {'n_burn': 200, 'n_run': 100000,
+                       ['MCMC', {'n_burn': 2000, 'n_run': 100000,
                                  'n_walkers': 50, 'sigma_scale': .1}]
                        ]
 
@@ -354,7 +347,7 @@ plt.savefig(outdir+'/bbh_distance.png')
 
 # get 90th percentile 
 y_rel = np.array(y_rel)
-y_rel_90 = np.percentile(y_rel, 10)
+y_rel_90 = np.nanpercentile(y_rel, 10)
 
 #########################
 # GENERATE RANDOM DATA  #
@@ -399,8 +392,8 @@ plt.savefig(outdir+'/kde.png')
 plt.figure()
 plt.imshow(imageLens, origin='lower', cmap='magma', norm=LogNorm(vmin=0.000001, vmax=0.1))
 plt.scatter(ran_pos[1][:5000], ran_pos[0][:5000], color='white', s=5, marker='d', label='GW', zorder=5, alpha=0.1)
-plt.xlim(30,60)
-plt.ylim(30,60)
+plt.xlim(10,30)
+plt.ylim(10,30)
 plt.savefig(outdir+'/ran_pos.png')
 
 #####################
