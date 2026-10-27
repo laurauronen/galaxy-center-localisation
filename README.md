@@ -45,6 +45,10 @@ To run the other case studies:
 The corresponding backgrounds can be run with the
 `galaxy_centre_background_*.py` script with the same name.
 
+## Results
+
+All results used in the manuscript are available in the `results_final/` directory. The `resultplotting.py` script can be used to fetch, reproduce, and plot/tabulate all the data in the text.
+
 ## Dependencies
 
 The environment is stored in `environment.yml`. If installing manually, please ensure the following packages are installed: numpy, lenstronomy (1.12.0), seaborn, matplotlib, emcee, corner, pandas, astropy, tqdm. Installation should take a few minutes.
