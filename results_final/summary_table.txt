@@ -3,7 +3,7 @@ Worst 	 0.01208 	 103.64 	 1.9400
 Average 	 0.01125 	 97.68 	 0.5800 
 Best 	 0.03119 	 240.93 	 0.0600 
 Gaussian Worst 	 0.00260 	 22.27 	 0.0600 
-Gaussian Average 	 0.00218 	 18.9048881202006 	 0.1500 
+Gaussian Average 	 0.00218 	 18.904888120200603 	 0.1500 
 Gaussian Best 	 0.01048 	 80.93 	 0.7200 
 Uncertainty 5 	 0.01209 	 104.96 	 0.5500 
 Uncertainty 10 	 0.03916 	 339.97 	 7.5400 
