@@ -1,4 +1,4 @@
-name: gcloc-nature
+name: gcloc
 channels:
   - defaults
   - conda-forge
@@ -67,4 +67,3 @@ dependencies:
       - tifffile==2025.5.10
       - tqdm==4.70.1
       - tzdata==2026.5
-prefix: /Users/laurauronen/anaconda3/envs/gcloc-nature
